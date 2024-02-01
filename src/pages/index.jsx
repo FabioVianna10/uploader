@@ -1,4 +1,4 @@
-//import List from "../../components/List";
+import { GetStaticPaths } from "next";
 import Uploader from "../../components/Uploader";
 
 export default function Home() {

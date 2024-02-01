@@ -9,8 +9,9 @@
   flex-direction: column;
   background-color: #92c7cf80;
   margin-left: 35rem;
-  width: 700px;
-  height: 400px;
+  width: 900px;
+  min-height: 700px;
+  height: auto;
   padding: 10px;
   border-radius: 50px;
 
@@ -62,4 +63,27 @@
   text-align: center;
   margin-top: 3rem;
   color: #222;
+}
+
+.containerList {
+  padding: 5px;
+  display: flex;
+  align-items: start;
+}
+
+.files {
+  list-style: none;
+  font-size: 18px;
+  text-transform: capitalize;
+  margin-top: 1rem;
+  font-weight: 800;
+}
+
+.btn {
+  padding: 2px;
+  font-size: 12px;
+  text-transform: capitalize;
+  border-radius: 5px;
+  margin-left: 10px;
+  text-align: center;
 }
