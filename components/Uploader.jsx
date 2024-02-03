@@ -108,7 +108,23 @@ export default function Uploader() {
                   className={styles.btn}
                   onClick={() => handleRemove(index)}
                 >
-                  Remove
+                  <Image
+                    src="/trash3.svg"
+                    width={20}
+                    height={17}
+                    alt="trash icon"
+                  />
+                </button>
+                <button
+                  className={styles.btn2}
+                  onClick={() => handleRemove(index)}
+                >
+                  <Image
+                    src="/cloud-arrow-down-fill.svg"
+                    width={18}
+                    height={18}
+                    alt="trash icon"
+                  />
                 </button>
               </li>
             </ul>

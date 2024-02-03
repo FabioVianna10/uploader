@@ -80,10 +80,26 @@
 }
 
 .btn {
-  padding: 2px;
-  font-size: 12px;
-  text-transform: capitalize;
-  border-radius: 5px;
-  margin-left: 10px;
-  text-align: center;
+  border: none;
+  background-color: transparent;
+  margin-left: 5px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: ease-in-out 0.2;
+}
+
+.btn:hover {
+  transform: scale(1.2);
+}
+.btn2 {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 1px;
+  transform: scale(1);
+  transition: ease-in-out 0.2;
+}
+
+.btn2:hover {
+  transform: scale(1.2);
 }
