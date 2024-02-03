@@ -27,28 +27,39 @@ export default function Uploader() {
     setFiles((prevFiles) => prevFiles.filter((file) => file.id !== id));
   };
 
-  const handleDownload = async () => {
+  const handleDownload = async (id) => {
     try {
+      const fileToDownload = files.find((file) => file.id === id);
+
+      if (!fileToDownload) {
+        console.error("Arquivo não encontrado para download");
+        return;
+      }
+
       const formData = new FormData();
-      files.forEach((file, index) => {
-        formData.append(`file${index + 1}`, file.file);
-      });
+      formData.append("file", fileToDownload.file);
 
-      const response = await axios.post(
-        "{Formeezy-Endpoint}/download",
-        formData,
-        {
-          responseType: "blob",
-        }
-      );
+      try {
+        const response = await axios.post(
+          "{Formeezy-Endpoint}/download",
+          formData,
+          {
+            responseType: "arraybuffer",
+          }
+        );
 
-      const blob = new Blob([response.data]);
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "files.zip";
-      link.click();
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileToDownload.name;
+        link.click();
+      } catch (error) {
+        console.error("Erro ao realizar o download:", error);
+      }
     } catch (error) {
-      console.error("Erro ao realizar o download:", error);
+      console.error("Erro ao processar o arquivo para download:", error);
     }
   };
 
@@ -98,15 +109,15 @@ export default function Uploader() {
           </div>
         </form>
 
-        {files.map((file, index) => (
-          <div className={styles.containerList}>
+        {files.map((file) => (
+          <div className={styles.containerList} key={file.id}>
             <ul>
-              <li className={styles.files} key={index}>
+              <li className={styles.files}>
                 {file.name}
 
                 <button
                   className={styles.btn}
-                  onClick={() => handleRemove(index)}
+                  onClick={() => handleRemove(file.id)}
                 >
                   <Image
                     src="/trash3.svg"
@@ -117,7 +128,7 @@ export default function Uploader() {
                 </button>
                 <button
                   className={styles.btn2}
-                  onClick={() => handleRemove(index)}
+                  onClick={() => handleDownload(file.id)}
                 >
                   <Image
                     src="/cloud-arrow-down-fill.svg"
