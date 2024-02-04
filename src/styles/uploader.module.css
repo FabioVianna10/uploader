@@ -8,13 +8,12 @@
   align-items: center;
   flex-direction: column;
   background-color: #92c7cf80;
-  margin-left: 35rem;
+  margin-left: 30rem;
   width: 900px;
   min-height: 700px;
   height: auto;
   padding: 10px;
   border-radius: 50px;
-
   margin-top: 3rem;
 }
 
