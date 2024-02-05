@@ -22,9 +22,9 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-
   margin-top: 4rem;
   margin-right: 55rem;
+  margin-bottom: 1rem;
 }
 
 .inp {
@@ -101,4 +101,27 @@
 
 .btn2:hover {
   transform: scale(1.2);
+}
+
+/* DivTable.com */
+.divTable {
+  display: table;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.divTableCell,
+.divTableHead {
+  display: table-cell;
+  padding: 3px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.listDiv {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 15rem;
 }

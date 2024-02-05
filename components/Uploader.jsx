@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
+  const [showFiles, setShowFiles] = useState(false);
 
   const handleChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -65,9 +66,9 @@ export default function Uploader() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Cliquei");
+    setShowFiles(true);
 
-    const formData = new FormData();
+    /*const formData = new FormData();
 
     files.forEach((file, index) => {
       formData.append(`file${index + 1}`, file.file);
@@ -80,7 +81,7 @@ export default function Uploader() {
       window.location.href = redirect;
     } catch (error) {
       window.location.href = error.response.data.redirect;
-    }
+    }*/
   };
 
   return (
@@ -109,12 +110,19 @@ export default function Uploader() {
           </div>
         </form>
 
-        {files.map((file) => (
-          <div className={styles.containerList} key={file.id}>
-            <ul>
-              <li className={styles.files}>
-                {file.name}
-
+        {showFiles && (
+          <>
+            {files.map((file, index) => (
+              <div className={styles.containerList} key={index}>
+                <div className={styles.listDiv}>
+                  <div>
+                    <div>
+                      <div className={styles.divTableCell}>{file.index}</div>
+                      <div className={styles.divTableCell}>{file.date}</div>
+                      <div className={styles.divTableCell}>{file.name}</div>
+                    </div>
+                  </div>
+                </div>
                 <button
                   className={styles.btn}
                   onClick={() => handleRemove(file.id)}
@@ -137,10 +145,10 @@ export default function Uploader() {
                     alt="trash icon"
                   />
                 </button>
-              </li>
-            </ul>
-          </div>
-        ))}
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
