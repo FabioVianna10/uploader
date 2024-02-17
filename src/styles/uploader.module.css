@@ -1,3 +1,4 @@
+
 .box {
   min-width: 100%;
   min-height: 100%;
@@ -8,13 +9,20 @@
   align-items: center;
   flex-direction: column;
   background-color: #92c7cf80;
-  margin-left: 20rem;
+  margin-left: 33rem;
   width: 800px;
   min-height: 600px;
   height: auto;
   padding: 10px;
   border-radius: 50px;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    margin-left: 20rem;
+    margin-top: 3.6rem;
+  }
 }
 
 .containerInp {

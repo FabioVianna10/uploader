@@ -30,37 +30,22 @@ export default function Uploader() {
 
   const handleDownload = async (id) => {
     try {
-      const fileToDownload = files.find((file) => file.id === id);
+      const response = await axios.get(
+        `http://localhost:8080/api/files/download/${files.id}`,
+        {
+          responseType: "blob",
+        }
+      );
 
-      if (!fileToDownload) {
-        console.error("Arquivo não encontrado para download");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", fileToDownload.file);
-
-      try {
-        const response = await axios.post(
-          "{Formeezy-Endpoint}/download",
-          formData,
-          {
-            responseType: "arraybuffer",
-          }
-        );
-
-        const blob = new Blob([response.data], {
-          type: response.headers["content-type"],
-        });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = fileToDownload.name;
-        link.click();
-      } catch (error) {
-        console.error("Erro ao realizar o download:", error);
-      }
+      const blob = new Blob([response.data], {
+        type: response.headers["content-type"],
+      });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = files.name;
+      link.click();
     } catch (error) {
-      console.error("Erro ao processar o arquivo para download:", error);
+      console.error("Erro ao realizar o download:", error);
     }
   };
 
@@ -68,20 +53,21 @@ export default function Uploader() {
     e.preventDefault();
     setShowFiles(true);
 
-    /*const formData = new FormData();
+    const formData = new FormData();
 
     files.forEach((file, index) => {
       formData.append(`file${index + 1}`, file.file);
     });
 
     try {
-      const response = await axios.post("{Formeezy-Endpoint}", formData);
-      const { data } = response;
-      const { redirect } = data;
-      window.location.href = redirect;
+      const response = await axios.post(
+        "http://localhost:8080/api/files/upload",
+        formData
+      );
+      console.log("Arquivo(s) enviado(s) com sucesso:", response.data);
     } catch (error) {
-      window.location.href = error.response.data.redirect;
-    }*/
+      console.error("Erro ao enviar arquivo(s):", error);
+    }
   };
 
   return (
@@ -153,3 +139,4 @@ export default function Uploader() {
     </div>
   );
 }
+
