@@ -110,12 +110,11 @@ export default function Uploader() {
         </form>
         {showFiles && (
           <>
-            {files.map((file) => (
-              <div className={styles.containerList} key={file.file_id}>
+            {files.map((file, index) => (
+              <div className={styles.containerList} key={index}>
                 <div className={styles.listDiv}>
                   <div>
-                    <div className={styles.divTableCell}>{file.id}</div>
-                    <div className={styles.divTableCell}>{file.fileId}</div>
+                    <div className={styles.divTableCell}>{index + 1}</div>
                     <div className={styles.divTableCell}>{file.cUF}</div>
                     <div className={styles.divTableCell}>{file.desxNome}</div>
                   </div>
