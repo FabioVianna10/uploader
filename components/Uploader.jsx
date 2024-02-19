@@ -71,15 +71,16 @@ export default function Uploader() {
     const formData = new FormData();
 
     files.forEach((file, index) => {
-      formData.append(`file${index + 1}`, file.file);
+      formData.append(`file`, file.file);
     });
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/files/upload",
+        "http://localhost:8080/net.fabio.uploader/api/files/upload",
         formData
       );
       console.log("Arquivo(s) enviado(s) com sucesso:", response.data);
+      setFiles([]);
     } catch (error) {
       console.error("Erro ao enviar arquivo(s):", error);
     }
@@ -95,7 +96,7 @@ export default function Uploader() {
           alt="cloud_icon"
         />
         <h1 className={styles.title}>Upload your files here!</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.containerInp}>
             <input
               className={styles.inp}
@@ -119,7 +120,7 @@ export default function Uploader() {
                     <div className={styles.divTableCell}>{file.desxNome}</div>
                   </div>
                 </div>
-                <button
+                {/* <button
                   className={styles.btn}
                   onClick={() => handleRemove(file.id)}
                 >
@@ -129,7 +130,7 @@ export default function Uploader() {
                     height={17}
                     alt="trash icon"
                   />
-                </button>
+                </button> */}
                 <button
                   className={styles.btn2}
                   onClick={() => handleDownload(file.id, file.name)}
