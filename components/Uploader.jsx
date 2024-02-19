@@ -1,11 +1,26 @@
 import styles from "../src/styles/uploader.module.css";
 import axios from "axios";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Uploader() {
   const [files, setFiles] = useState([]);
   const [showFiles, setShowFiles] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let endPoint =
+        "http://localhost:8080/net.fabio.uploader/api/files/getAll";
+      try {
+        const response = await axios.get(endPoint);
+        setFiles(response.data);
+        setShowFiles(true);
+      } catch (error) {
+        console.error("Erro ao obter arquivos:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -80,14 +95,12 @@ export default function Uploader() {
           alt="cloud_icon"
         />
         <h1 className={styles.title}>Upload your files here!</h1>
-
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className={styles.containerInp}>
             <input
               className={styles.inp}
               type="file"
               accept=".xml"
-              onChange={handleChange}
               multiple={true}
             />
             <button className={styles.inp2} type="submit">
@@ -95,18 +108,16 @@ export default function Uploader() {
             </button>
           </div>
         </form>
-
         {showFiles && (
           <>
-            {files.map((file, index) => (
-              <div className={styles.containerList} key={index}>
+            {files.map((file) => (
+              <div className={styles.containerList} key={file.file_id}>
                 <div className={styles.listDiv}>
                   <div>
-                    <div>
-                      <div className={styles.divTableCell}>{file.index}</div>
-                      <div className={styles.divTableCell}>{file.date}</div>
-                      <div className={styles.divTableCell}>{file.name}</div>
-                    </div>
+                    <div className={styles.divTableCell}>{file.id}</div>
+                    <div className={styles.divTableCell}>{file.fileId}</div>
+                    <div className={styles.divTableCell}>{file.cUF}</div>
+                    <div className={styles.divTableCell}>{file.desxNome}</div>
                   </div>
                 </div>
                 <button
@@ -122,13 +133,13 @@ export default function Uploader() {
                 </button>
                 <button
                   className={styles.btn2}
-                  onClick={() => handleDownload(file.id)}
+                  onClick={() => handleDownload(file.id, file.name)}
                 >
                   <Image
                     src="/cloud-arrow-down-fill.svg"
                     width={18}
                     height={18}
-                    alt="trash icon"
+                    alt="download icon"
                   />
                 </button>
               </div>
@@ -139,4 +150,3 @@ export default function Uploader() {
     </div>
   );
 }
-
