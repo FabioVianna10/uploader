@@ -14,9 +14,11 @@ React: O frontend da aplicação foi desenvolvido em React, oferecendo uma exper
 Axios: A biblioteca Axios foi utilizada para realizar requisições HTTP para o backend, facilitando a comunicação entre o frontend e o backend.
 PostgreSQL: O banco de dados PostgreSQL foi escolhido para armazenar os arquivos XML enviados pelos usuários.
 
-Como Executar o Projeto
-Clone o repositório para o seu ambiente local.
-Certifique-se de ter o Node.js e o npm instalados em sua máquina.
-Instale as dependências do projeto utilizando o comando npm install.
-Inicie o servidor de desenvolvimento executando o comando npm start.
-Acesse a aplicação através do navegador web, geralmente em http://localhost:3000.
+- Como Executar o Projeto
+- Clone o repositório para o seu ambiente local.
+- Certifique-se de ter o Node.js e o npm instalados em sua máquina.
+- Instale as dependências do projeto utilizando o comando npm install.
+- Inicie o servidor de desenvolvimento executando o comando npm start.
+- Acesse a aplicação através do navegador web, geralmente em http://localhost:3000.
+
+  - Video do projeto rodando - https://www.loom.com/share/0e6e848d110a49b3906048269101829a?sid=8ffde4a1-2e68-458c-96f6-a0d355e0b3a4
