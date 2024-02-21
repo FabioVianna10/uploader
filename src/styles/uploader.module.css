@@ -85,19 +85,6 @@
   margin-top: 1rem;
   font-weight: 800;
 }
-
-.btn {
-  border: none;
-  background-color: transparent;
-  margin-left: 5px;
-  cursor: pointer;
-  transform: scale(1);
-  transition: ease-in-out 0.2;
-}
-
-.btn:hover {
-  transform: scale(1.2);
-}
 .btn2 {
   border: none;
   background-color: transparent;
@@ -111,7 +98,6 @@
   transform: scale(1.2);
 }
 
-/* DivTable.com */
 .divTable {
   max-width: 800px;
 }
